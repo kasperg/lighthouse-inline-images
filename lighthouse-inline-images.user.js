@@ -3,18 +3,15 @@
 // @namespace      headinsky.dk
 // @description    Show image attachments for Lighthouse tickets inline
 // @include        https://*.lighthouseapp.com/*
+// @require		   http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
-var attachments;
-attachments = document.getElementsByClassName('aimg');
-for each(attachment in attachments)
+var width = $("div#main div.attachments").width();
+
+$("ul.attachment-list li.aimg a").each(function()
 {
-  links = attachment.getElementsByTagName('a');
-  for each (link in links)
-  {
     img = document.createElement('img');
-    img.setAttribute('src', link.getAttribute('href'));
-    img.setAttribute('width', (attachment.parentNode.clientWidth - 38 - 6));
-    link.replaceChild(img, link.firstChild);
-  }
-}
+    img.setAttribute('src', this.getAttribute('href'));
+    img.setAttribute('style','max-width: ' + (width-45) + 'px;');
+    this.replaceChild(img, this.firstChild);
+});
