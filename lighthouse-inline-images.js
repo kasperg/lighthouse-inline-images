@@ -6,12 +6,20 @@
 // @require		     http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
 // ==/UserScript==
 
-var width = $("div#main div.attachments").width();
-
-$("ul.attachment-list li.aimg a").each(function()
-{
-    img = document.createElement('img');
-    img.setAttribute('src', this.getAttribute('href'));
-    img.setAttribute('style','max-width: ' + (width-45) + 'px;');
-    this.replaceChild(img, this.firstChild);
+$(document).ready(function() {
+  var width = $("#main .attachments").width();
+  
+  $(".attachment-list li.aimg a").each(function()
+  {
+      //replace link to image with actual image
+      jQuery(this).html(
+        jQuery('<img/>')
+          .attr('src', $(this).attr('href'))
+          .css('max-width', (width-45)+'px'));
+      //readjust positioning of file size
+      jQuery(this).siblings('.file-size').css({
+         'top': 'auto',
+         'bottom': '9px'
+      });
+  });
 });
