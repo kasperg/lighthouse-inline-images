@@ -3,7 +3,7 @@
 // @namespace      headinsky.dk
 // @description    Show image attachments for Lighthouse tickets inline
 // @include        https://*.lighthouseapp.com/*
-// @require		   http://code.jquery.com/jquery-latest.js
+// @require		     http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
 var width = $("div#main div.attachments").width();
